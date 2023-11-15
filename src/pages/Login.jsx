@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function SignIn() {
+function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [token, setToken] = useState("");
@@ -62,13 +62,13 @@ function SignIn() {
 
         <br />
 
-        <label htmlFor="password">
+        <label htmlFor="password-form">
           パスワード
           <br />
           <input
             type="password"
             className="password-input"
-            id="password"
+            id="password-form"
             onChange={handlePasswordChange}
           />
         </label>
@@ -81,4 +81,4 @@ function SignIn() {
   );
 }
 
-export default SignIn;
+export default Login;
