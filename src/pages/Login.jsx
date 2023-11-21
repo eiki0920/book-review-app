@@ -1,10 +1,19 @@
 import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [token, setToken] = useState("");
   const [errorMessage, setErrorMessage] = useState();
+
+  const navigation = useNavigate();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -34,8 +43,12 @@ function Login() {
         return res.json();
       })
       .then((token) => {
-        // setToken(token);
         setErrorMessage("");
+        navigation("/", {
+          state: {
+            token: token.token,
+          },
+        });
       })
       .catch((error) => {
         console.log(error);
@@ -46,6 +59,7 @@ function Login() {
   return (
     <div className="main">
       <h2>サインイン</h2>
+      <a href="/signup">ユーザー登録</a>
       <p className="error-message">{errorMessage}</p>
 
       <form className="signin-form">
@@ -56,9 +70,13 @@ function Login() {
             type="email"
             className="email-input"
             id="email"
-            onChange={handleEmailChange}
+            {...register("mail", {
+              required: "メールアドレスを入力してください",
+              onChange: handleEmailChange,
+            })}
           />
         </label>
+        <div>{errors.name?.mail}</div>
 
         <br />
 
@@ -69,11 +87,19 @@ function Login() {
             type="password"
             className="password-input"
             id="password-form"
-            onChange={handlePasswordChange}
+            {...register("password", {
+              required: "パスワードを入力してください",
+              onChange: handlePasswordChange,
+            })}
           />
         </label>
+        <div>{errors.password?.message}</div>
         <br />
-        <button type="button" id="signin-button" onClick={onSignIn}>
+        <button
+          type="button"
+          id="signin-button"
+          onClick={handleSubmit(onSignIn)}
+        >
           サインイン
         </button>
       </form>

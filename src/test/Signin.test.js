@@ -1,9 +1,9 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import SignIn from "../pages/Login";
+import Login from "../pages/Login";
 
 test("入力ラベルが存在するか", () => {
-  render(<SignIn />);
+  render(<Login />);
 
   const mailForm = screen.getByLabelText(/メールアドレス/i);
   const passwordForm = screen.getByLabelText(/パスワード/i);
@@ -13,7 +13,7 @@ test("入力ラベルが存在するか", () => {
 });
 
 test("ボタンの数", async () => {
-  render(<SignIn />);
+  render(<Login />);
   const buttonList = await screen.findAllByRole("button");
   expect(buttonList).toHaveLength(1);
 });

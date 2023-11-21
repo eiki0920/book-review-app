@@ -1,6 +1,6 @@
 describe("template spec", () => {
   it("空欄でボタンを押した場合", () => {
-    cy.visit("/signin");
+    cy.visit("/login");
     cy.get("#email").type(" ");
     cy.get("#password").type(" ");
     cy.get("#signin-button").click();
@@ -8,7 +8,7 @@ describe("template spec", () => {
   });
 
   it("適切な入力", () => {
-    cy.visit("/signin");
+    cy.visit("/login");
     cy.get("#email").type("hogehoge");
     cy.get("#password").type("hogehoge");
     cy.get("#signin-button").click();
@@ -16,7 +16,7 @@ describe("template spec", () => {
   });
 
   it("登録されていないメールアドレスを入力した場合", () => {
-    cy.visit("/signin");
+    cy.visit("/login");
     cy.get("#email").type("hogehog");
     cy.get("#password").type("hogehoge");
     cy.get("#signin-button").click();
@@ -25,7 +25,7 @@ describe("template spec", () => {
   });
 
   it("誤ったパスワードを送信したとき", () => {
-    cy.visit("/signin");
+    cy.visit("/login");
     cy.get("#email").type("hogehoge");
     cy.get("#password").type("hogeh");
     cy.get("#signin-button").click();
