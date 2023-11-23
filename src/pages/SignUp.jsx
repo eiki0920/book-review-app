@@ -18,17 +18,14 @@ function SignUp() {
 
   const handleNameChange = (e) => {
     setName(e.target.value);
-    console.log(e.target.value);
   };
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
-    console.log(e.target.value);
   };
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
-    console.log(e.target.value);
   };
 
   const handleIconChange = (e) => {
