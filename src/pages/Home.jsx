@@ -1,15 +1,16 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { useLocation } from "react-router-dom";
-import { Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import "../style/Home.scss";
 
 function Home() {
   const [bookList, setBookList] = useState([]);
+  const [userName, setUserName] = useState("");
+  const [icon, setIcon] = useState("");
   const [page, setPage] = useState(0);
-  const location = useLocation();
-  const token = location.state ? location.state.token : null;
+
+  const token = localStorage.getItem("Token");
 
   const handlePage = (e) => {
     const type = e.target.value;
@@ -24,33 +25,67 @@ function Home() {
 
   useEffect(() => {
     if (!token) {
-      return;
-    }
-
-    console.log(page);
-
-    fetch(`https://railway.bookreview.techtrain.dev/books?offset=${page}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      .then((res) => {
-        return res.json();
+      fetch(
+        `https://railway.bookreview.techtrain.dev/public/books?offset=${page}`
+      )
+        .then((res) => {
+          return res.json();
+        })
+        .then((books) => {
+          setBookList(books);
+          return;
+        });
+    } else {
+      fetch(`https://railway.bookreview.techtrain.dev/books?offset=${page}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       })
-      .then((books) => {
-        console.log(books);
-        setBookList(books);
-      });
+        .then((res) => {
+          return res.json();
+        })
+        .then((books) => {
+          console.log(books);
+          setBookList(books);
+        })
+        .then(() => {
+          fetch(`https://railway.bookreview.techtrain.dev/users`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          })
+            .then((res) => {
+              return res.json();
+            })
+            .then((user) => {
+              console.log(user);
+              setUserName(user.name);
+              setIcon(user.iconUrl);
+            });
+        });
+    }
   }, [token, page]);
 
-  if (!token) {
-    return <Navigate to="/login" />;
-  }
+  // if (!token) {
+  //   return <Navigate to="/login" />;
+  // }
 
   return (
     <div className="home">
-      <h1 className="home__heading">ホーム</h1>
       <div className="home__bookList">
+        <header>
+          <h2 className="app-title">書籍レビューアプリ</h2>
+          <div className="header-right">
+            {token ? (
+              <>
+                <p>{userName}</p>
+                <img src={icon} alt="アイコン画像" />
+              </>
+            ) : (
+              <Link to="/login">ログイン</Link>
+            )}
+          </div>
+        </header>
         <h2 className="home__bookList--heading">書籍一覧</h2>
         <ul>
           {bookList.map((book) => (
