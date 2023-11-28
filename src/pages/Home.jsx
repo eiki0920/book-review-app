@@ -1,17 +1,35 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 import "../style/Home.scss";
 
 function Home() {
   const [bookList, setBookList] = useState([]);
+  const [page, setPage] = useState(0);
   const location = useLocation();
-  const token = location.state.token;
-  console.log(token);
+  const token = location.state ? location.state.token : null;
+
+  const handlePage = (e) => {
+    const type = e.target.value;
+    if (type === "before") {
+      setPage(page - 10);
+      return;
+    } else {
+      setPage(page + 10);
+      return;
+    }
+  };
 
   useEffect(() => {
-    fetch("https://railway.bookreview.techtrain.dev/books?offset=1", {
+    if (!token) {
+      return;
+    }
+
+    console.log(page);
+
+    fetch(`https://railway.bookreview.techtrain.dev/books?offset=${page}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -23,7 +41,11 @@ function Home() {
         console.log(books);
         setBookList(books);
       });
-  }, []);
+  }, [token, page]);
+
+  if (!token) {
+    return <Navigate to="/login" />;
+  }
 
   return (
     <div className="home">
@@ -37,6 +59,17 @@ function Home() {
             </li>
           ))}
         </ul>
+      </div>
+
+      <div className="home__button">
+        {page > 0 && (
+          <button onClick={handlePage} value={"before"}>
+            前へ
+          </button>
+        )}
+        <button onClick={handlePage} value={"next"}>
+          次へ
+        </button>
       </div>
     </div>
   );

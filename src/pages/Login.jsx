@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState();
+  const [, setCookie] = useCookies();
 
   const navigation = useNavigate();
 
@@ -44,6 +46,8 @@ function Login() {
       })
       .then((token) => {
         setErrorMessage("");
+        setCookie("token", token);
+
         navigation("/", {
           state: {
             token: token.token,
