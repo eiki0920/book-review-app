@@ -79,7 +79,9 @@ function Home() {
             {token ? (
               <>
                 <p>{userName}</p>
-                <img src={icon} alt="アイコン画像" />
+                <Link to="/profile">
+                  <img src={icon} alt="" />
+                </Link>
               </>
             ) : (
               <Link to="/login">ログイン</Link>
