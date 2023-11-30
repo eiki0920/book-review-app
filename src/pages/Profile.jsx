@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useCookies } from "react-cookie";
 
 import "../style/Profile.css";
 
 function Profile() {
   const [userName, setUserName] = useState("");
   const [iconUrl, setIconUrl] = useState("");
-  const token = localStorage.getItem("Token");
+  const [cookie] = useCookies();
+
+  const token = cookie.token;
 
   const handleNameChange = (e) => {
     setUserName(e.target.value);
@@ -28,6 +31,7 @@ function Profile() {
       })
       .then((ans) => {
         console.log(ans);
+        alert("プロフィールが変更されました");
       });
   };
 

@@ -1,6 +1,9 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
+
+import Header from "../component/Header";
 
 import "../style/Home.scss";
 
@@ -9,8 +12,11 @@ function Home() {
   const [userName, setUserName] = useState("");
   const [icon, setIcon] = useState("");
   const [page, setPage] = useState(0);
+  const [cookies] = useCookies();
 
-  const token = localStorage.getItem("Token");
+  const navigate = useNavigate();
+
+  const token = cookies.token;
 
   const handlePage = (e) => {
     const type = e.target.value;
@@ -48,47 +54,29 @@ function Home() {
           console.log(books);
           setBookList(books);
         })
-        .then(() => {
-          fetch(`https://railway.bookreview.techtrain.dev/users`, {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          })
-            .then((res) => {
-              return res.json();
-            })
-            .then((user) => {
-              console.log(user);
-              setUserName(user.name);
-              setIcon(user.iconUrl);
-            });
+        .catch((error) => {
+          console.log(error);
+          navigate("/login");
         });
     }
   }, [token, page]);
 
-  // if (!token) {
-  //   return <Navigate to="/login" />;
-  // }
-
   return (
     <div className="home">
       <div className="home__bookList">
-        <header>
-          <h2 className="app-title">書籍レビューアプリ</h2>
-          <div className="header-right">
-            {token ? (
-              <>
-                <p>{userName}</p>
-                <Link to="/profile">
-                  <img src={icon} alt="" />
-                </Link>
-              </>
-            ) : (
-              <Link to="/login">ログイン</Link>
-            )}
-          </div>
-        </header>
+        <Header />
+        <button
+          type="button"
+          className="create-review-link"
+          onClick={() => {
+            navigate("/new");
+          }}
+        >
+          レビューを作成
+        </button>
+
         <h2 className="home__bookList--heading">書籍一覧</h2>
+
         <ul>
           {bookList.map((book) => (
             <li key={book.id} className="home__bookList--title">

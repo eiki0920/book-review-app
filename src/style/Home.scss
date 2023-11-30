@@ -1,5 +1,4 @@
 .home {
-  // width: 100%;
   margin: 0 auto;
 
   &__heading {
@@ -10,7 +9,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 550px;
+    height: 600px;
 
     &--heading {
       font-size: 30px;
@@ -59,4 +58,33 @@ header h2 {
   display: flex;
   align-items: center;
   margin-right: 30px;
+}
+
+.logout-button {
+  margin-left: 15px;
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  background-color: #07670a;
+  color: white;
+}
+
+.logout-button:hover {
+  cursor: pointer;
+  background-color: #0b7f0e;
+}
+
+.create-review-link {
+  margin-left: auto;
+  margin-right: 150px;
+  padding: 8px 13px;
+  border-radius: 5px;
+  border: none;
+  background-color: #07670a;
+  color: white;
+}
+
+.create-review-link:hover {
+  cursor: pointer;
+  background-color: #0b7f0e;
 }

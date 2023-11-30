@@ -1,0 +1,35 @@
+.create-review {
+  text-align: center;
+}
+
+.create-review-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.create-review-form input {
+  width: 400px;
+  padding: 8px;
+  margin-top: 5px;
+  border-radius: 5px;
+}
+
+.create-review-form label {
+  text-align: left;
+}
+
+.create-review-form button {
+  background-color: #4caf50;
+  color: white;
+  padding: 5px 15px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+}
+
+.create-review-form button:hover {
+  background-color: #2d702f;
+  cursor: pointer;
+}
