@@ -5,8 +5,6 @@ import { useEffect, useState } from "react";
 function Header() {
   const [cookies, , removeCookie] = useCookies();
   const token = cookies.token;
-  //   const userName = props.userName;
-  //   const icon = props.icon;
 
   const [userName, setUserName] = useState("");
   const [icon, setIcon] = useState("");

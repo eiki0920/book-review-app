@@ -1,5 +1,9 @@
 .home {
   margin: 0 auto;
+  & a {
+    text-decoration: none;
+    color: black;
+  }
 
   &__heading {
     padding: 10px;

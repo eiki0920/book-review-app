@@ -79,9 +79,9 @@ function Home() {
 
         <ul>
           {bookList.map((book) => (
-            <li key={book.id} className="home__bookList--title">
-              {book.title}
-            </li>
+            <Link to={`/detail/${book.id}`} key={book.id}>
+              <li className="home__bookList--title">{book.title}</li>
+            </Link>
           ))}
         </ul>
       </div>

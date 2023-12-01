@@ -50,6 +50,8 @@ function CreateReview() {
         })
         .then((ans) => {
           console.log(ans);
+
+          alert("レビューが作成されました");
         });
     }
   };
