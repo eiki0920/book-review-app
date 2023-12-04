@@ -29,7 +29,7 @@
 }
 
 #signin-button {
-  background-color: #4caf50;
+  background-color: #07670a;
   width: 130px;
   color: white;
   padding: 10px 10px;
@@ -40,5 +40,5 @@
 }
 
 #signin-button:hover {
-  background-color: #45a049;
+  background-color: #0b7f0e;
 }

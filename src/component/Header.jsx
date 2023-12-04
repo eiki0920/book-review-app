@@ -2,6 +2,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { useEffect, useState } from "react";
 
+import "../style/Header.css";
+
 function Header() {
   const [cookies, , removeCookie] = useCookies();
   const token = cookies.token;

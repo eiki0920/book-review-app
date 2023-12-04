@@ -21,7 +21,7 @@
 }
 
 .create-review-form button {
-  background-color: #4caf50;
+  background-color: #07670a;
   color: white;
   padding: 5px 15px;
   cursor: pointer;
@@ -30,6 +30,6 @@
 }
 
 .create-review-form button:hover {
-  background-color: #2d702f;
+  background-color: #0b7f0e;
   cursor: pointer;
 }

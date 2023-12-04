@@ -12,7 +12,6 @@ function Home() {
 
   const [page, setPage] = useState(0);
   const [cookies] = useCookies();
-  const [isMine, setIsMine] = useState();
 
   const navigate = useNavigate();
 
@@ -85,11 +84,19 @@ function Home() {
             <>
               {token ? (
                 book.isMine ? (
-                  <Link to={`/edit/${book.id}`} key={book.id}>
+                  <Link
+                    to={`/edit/${book.id}`}
+                    key={book.id}
+                    className="home__bookList--title"
+                  >
                     <li>{book.title}</li>
                   </Link>
                 ) : (
-                  <Link to={`/detail/${book.id}`} key={book.id}>
+                  <Link
+                    to={`/detail/${book.id}`}
+                    key={book.id}
+                    className="home__bookList--title"
+                  >
                     <li>{book.title}</li>
                   </Link>
                 )

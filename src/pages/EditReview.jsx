@@ -3,7 +3,7 @@ import { useCookies } from "react-cookie";
 import { useEffect, useState } from "react";
 
 import Header from "../component/Header";
-import "../style/DetailReview.css";
+import "../style/EditReview.css";
 
 function DetailReview() {
   const [cookies] = useCookies();
@@ -87,13 +87,13 @@ function DetailReview() {
         <div className="review-edit">
           <h1>レビュー詳細</h1>
 
-          <form className="reciew-form">
+          <form className="review-form">
             <label htmlFor="title">
               タイトル
               <br />
               <input
                 type="text"
-                className="title-input"
+                className="review-input"
                 id="title"
                 value={title}
                 onChange={handleTitleChange}
@@ -106,7 +106,7 @@ function DetailReview() {
               <br />
               <input
                 type="text"
-                className="url-input"
+                className="review-input"
                 id="url"
                 value={url}
                 onChange={handleUrlChange}
@@ -119,7 +119,7 @@ function DetailReview() {
               <br />
               <input
                 type="text"
-                className="detail-input"
+                className="review-input"
                 id="detail"
                 value={detail}
                 onChange={handleDetailChange}
