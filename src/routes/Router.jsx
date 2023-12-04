@@ -7,6 +7,7 @@ import SignUp from "../pages/SignUp";
 import Profile from "../pages/Profile";
 import CreateReview from "../pages/CreateReview";
 import DetailReview from "../pages/DetailReview";
+import EditReview from "../pages/EditReview";
 
 function Router() {
   return (
@@ -18,6 +19,7 @@ function Router() {
         <Route exact path="/profile" element={<Profile />} />
         <Route exact path="/new" element={<CreateReview />} />
         <Route exact path="/detail/:id" element={<DetailReview />} />
+        <Route exact path="/edit/:id" element={<EditReview />} />
       </Routes>
     </BrowserRouter>
   );

@@ -41,8 +41,8 @@ function Header() {
         {token ? (
           <>
             <p>{userName}</p>
-            <Link to="/profile">
-              <img src={icon} alt="" />
+            <Link to="/profile" aria-label="to-profile">
+              <img src={icon} alt="アイコン画像" />
             </Link>
             <button className="logout-button" onClick={logout}>
               ログアウト

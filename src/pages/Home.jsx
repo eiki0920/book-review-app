@@ -9,10 +9,10 @@ import "../style/Home.scss";
 
 function Home() {
   const [bookList, setBookList] = useState([]);
-  const [userName, setUserName] = useState("");
-  const [icon, setIcon] = useState("");
+
   const [page, setPage] = useState(0);
   const [cookies] = useCookies();
+  const [isMine, setIsMine] = useState();
 
   const navigate = useNavigate();
 
@@ -65,25 +65,42 @@ function Home() {
     <div className="home">
       <div className="home__bookList">
         <Header />
-        <button
-          type="button"
-          className="create-review-link"
-          onClick={() => {
-            navigate("/new");
-          }}
-        >
-          レビューを作成
-        </button>
+
+        {token && (
+          <button
+            type="button"
+            className="create-review-link"
+            onClick={() => {
+              navigate("/new");
+            }}
+          >
+            レビューを作成
+          </button>
+        )}
 
         <h2 className="home__bookList--heading">書籍一覧</h2>
 
-        <ul>
+        <div>
           {bookList.map((book) => (
-            <Link to={`/detail/${book.id}`} key={book.id}>
-              <li className="home__bookList--title">{book.title}</li>
-            </Link>
+            <>
+              {token ? (
+                book.isMine ? (
+                  <Link to={`/edit/${book.id}`} key={book.id}>
+                    <li>{book.title}</li>
+                  </Link>
+                ) : (
+                  <Link to={`/detail/${book.id}`} key={book.id}>
+                    <li>{book.title}</li>
+                  </Link>
+                )
+              ) : (
+                <Link to={`/detail/${book.id}`} key={book.id}>
+                  <li className="home__bookList--title">{book.title}</li>
+                </Link>
+              )}
+            </>
           ))}
-        </ul>
+        </div>
       </div>
 
       <div className="home__button">
