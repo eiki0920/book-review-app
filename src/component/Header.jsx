@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { useEffect, useState } from "react";
 
-import "../style/Header.css";
+import "../style/Header.scss";
 
 function Header() {
   const [cookies, , removeCookie] = useCookies();
@@ -35,18 +35,24 @@ function Header() {
   }, []);
   return (
     <header>
-      <Link to="/">
-        <h2 className="app-title">書籍レビューアプリ</h2>
-      </Link>
+      <div className="header__left">
+        <Link to="/" className="header__left--title">
+          <h2>書籍レビューアプリ</h2>
+        </Link>
+      </div>
 
-      <div className="header-right">
+      <div className="header__right">
         {token ? (
           <>
             <p>{userName}</p>
             <Link to="/profile" aria-label="to-profile">
-              <img src={icon} alt="アイコン画像" />
+              <img
+                src={icon}
+                alt="アイコン画像"
+                className="header__right--icon"
+              />
             </Link>
-            <button className="logout-button" onClick={logout}>
+            <button className="header__right--botton" onClick={logout}>
               ログアウト
             </button>
           </>

@@ -3,7 +3,7 @@ import { useCookies } from "react-cookie";
 import { useEffect, useState } from "react";
 
 import Header from "../component/Header";
-import "../style/EditReview.css";
+import "../style/EditReview.scss";
 
 function DetailReview() {
   const [cookies] = useCookies();
@@ -79,21 +79,20 @@ function DetailReview() {
   }, []);
 
   return (
-    <>
+    <div className="edit">
       <Header />
       {isLoading ? (
-        <h2>ロード中・・・</h2>
+        <h2 className="edit__load">ロード中・・・</h2>
       ) : (
-        <div className="review-edit">
+        <div className="edit__container">
           <h1>レビュー詳細</h1>
 
-          <form className="review-form">
+          <form className="edit__container--form">
             <label htmlFor="title">
               タイトル
               <br />
               <input
                 type="text"
-                className="review-input"
                 id="title"
                 value={title}
                 onChange={handleTitleChange}
@@ -106,7 +105,6 @@ function DetailReview() {
               <br />
               <input
                 type="text"
-                className="review-input"
                 id="url"
                 value={url}
                 onChange={handleUrlChange}
@@ -132,7 +130,6 @@ function DetailReview() {
               <br />
               <input
                 type="title"
-                className="review-input"
                 id="review"
                 value={review}
                 onChange={handleReviewChange}
@@ -140,13 +137,17 @@ function DetailReview() {
             </label>
             <br />
 
-            <button type="button" id="signin-button" onClick={UpdateReviewData}>
+            <button
+              type="button"
+              onClick={UpdateReviewData}
+              className="edit__container--button"
+            >
               更新する
             </button>
           </form>
         </div>
       )}
-    </>
+    </div>
   );
 }
 

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useCookies } from "react-cookie";
 import Header from "../component/Header";
 
-import "../style/CreateReview.css";
+import "../style/CreateReview.scss";
 
 function CreateReview() {
   const [title, setTitle] = useState("");
@@ -57,11 +57,11 @@ function CreateReview() {
   };
 
   return (
-    <div className="create-review">
+    <div className="createReview">
       <Header />
 
-      <h3>レビュー作成</h3>
-      <form className="create-review-form">
+      <h2>レビュー作成</h2>
+      <form className="createReview__form">
         <label htmlFor="title">
           タイトル
           <br />
@@ -94,7 +94,7 @@ function CreateReview() {
 
         <br />
 
-        <button type="button" id="create-review-button" onClick={PostReview}>
+        <button type="button" onClick={PostReview}>
           作成
         </button>
       </form>

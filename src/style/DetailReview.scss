@@ -1,0 +1,10 @@
+.detail {
+  text-align: center;
+
+  &__container {
+    li {
+      list-style: none;
+      margin-bottom: 10px;
+    }
+  }
+}

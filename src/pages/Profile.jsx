@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+
 import { useCookies } from "react-cookie";
 
-import "../style/Profile.css";
+import "../style/Profile.scss";
+import Header from "../component/Header";
 
 function Profile() {
   const [userName, setUserName] = useState("");
@@ -53,22 +54,18 @@ function Profile() {
   }, []);
   return (
     <>
-      <header>
-        <h2 className="app-title">書籍レビューアプリ</h2>
-        <div className="header-right">
-          <Link to="/">トップへ戻る</Link>
-        </div>
-      </header>
+      <Header />
+
       <div className="profile">
         <h1>プロフィール</h1>
-        <img src={iconUrl} alt="アイコン画像" className="user-icon" />
-        <form className="profile-form">
+        <img src={iconUrl} alt="アイコン画像" className="profile__icon" />
+        <form className="profile__form">
           <label htmlFor="name">
             名前
             <br />
             <input
               type="name"
-              className="name-input"
+              className="profile__form--input"
               id="name"
               value={userName}
               onChange={handleNameChange}
@@ -76,7 +73,12 @@ function Profile() {
           </label>
           <br />
 
-          <button type="button" id="signin-button" onClick={UpdateUserData}>
+          <button
+            type="button"
+            id="signin-button"
+            onClick={UpdateUserData}
+            className="profile__form--button"
+          >
             更新する
           </button>
         </form>

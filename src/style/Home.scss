@@ -33,21 +33,12 @@
     align-items: center;
     justify-content: center;
     & button {
-      padding: 5px 13px;
-      border-radius: 5px;
-      background-color: #07670a;
-      color: white;
-      border: none;
       margin: 0 3px;
-    }
-    & button:hover {
-      cursor: pointer;
-      background-color: #0b7f0e;
     }
   }
 }
 
-.create-review-link {
+button {
   margin-left: auto;
   margin-right: 150px;
   padding: 8px 13px;
@@ -57,7 +48,7 @@
   color: white;
 }
 
-.create-review-link:hover {
+button:hover {
   cursor: pointer;
   background-color: #0b7f0e;
 }

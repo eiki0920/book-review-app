@@ -1,0 +1,31 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 30px;
+  background-color: #4caf50;
+
+  & .header__left {
+    margin-left: 100px;
+
+    &--title {
+      text-decoration: none;
+      color: black;
+    }
+  }
+
+  & .header__right {
+    display: flex;
+    align-items: center;
+
+    &--icon {
+      width: 30px;
+      height: 30px;
+      margin-left: 10px;
+      margin-right: 10px;
+      border-radius: 50%;
+      border: 0.1px solid rgb(74, 73, 73);
+    }
+  }
+}

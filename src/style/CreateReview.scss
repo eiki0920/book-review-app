@@ -1,0 +1,26 @@
+.createReview {
+  text-align: center;
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+
+    input {
+      width: 400px;
+      padding: 8px;
+      margin-top: 5px;
+      border-radius: 5px;
+    }
+
+    label {
+      text-align: left;
+      font-size: 18px;
+    }
+
+    button {
+      margin: 0 auto;
+    }
+  }
+}

@@ -3,7 +3,7 @@ import { useCookies } from "react-cookie";
 import { useEffect, useState } from "react";
 
 import Header from "../component/Header";
-import "../style/DetailReview.css";
+import "../style/DetailReview.scss";
 
 function DetailReview() {
   const [cookies] = useCookies();
@@ -31,12 +31,12 @@ function DetailReview() {
   }, []);
 
   return (
-    <div className="detail-review">
+    <div className="detail">
       <Header />
       {isLoading ? (
-        <h2>ロード中...</h2>
+        <h2 className="detail__load">ロード中...</h2>
       ) : (
-        <>
+        <div className="detail__container">
           <h2>レビュー詳細</h2>
           <ul>
             <li>title: {bookInfo.title}</li>
@@ -45,7 +45,7 @@ function DetailReview() {
             <li>review: {bookInfo.review}</li>
             <li>reviewer: {bookInfo.reviewer}</li>
           </ul>
-        </>
+        </div>
       )}
     </div>
   );
