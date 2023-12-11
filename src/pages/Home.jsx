@@ -101,9 +101,7 @@ function Home() {
                   </Link>
                 )
               ) : (
-                <Link to={`/detail/${book.id}`} key={book.id}>
-                  <li className="home__bookList--title">{book.title}</li>
-                </Link>
+                <li className="home__bookList--title">{book.title}</li>
               )}
             </>
           ))}

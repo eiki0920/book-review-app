@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { useEffect, useState } from "react";
 
@@ -13,6 +13,8 @@ function DetailReview() {
   const [url, setUrl] = useState("");
   const [detail, setDetail] = useState("");
   const [review, setReview] = useState("");
+
+  const navigate = useNavigate();
 
   const token = cookies.token;
   const id = useParams().id;
@@ -55,6 +57,23 @@ function DetailReview() {
       .then((res) => {
         console.log(res);
         alert("レビューが更新されました");
+      });
+  };
+
+  const DeleteReviewData = () => {
+    fetch(`https://railway.bookreview.techtrain.dev/books/${id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => {
+        console.log(res);
+      })
+      .then(() => {
+        alert("レビューが削除されました");
+        navigate("/");
       });
   };
 
@@ -137,13 +156,24 @@ function DetailReview() {
             </label>
             <br />
 
-            <button
-              type="button"
-              onClick={UpdateReviewData}
-              className="edit__container--button"
-            >
-              更新する
-            </button>
+            <div>
+              <button
+                type="button"
+                onClick={UpdateReviewData}
+                className="edit__container--button"
+              >
+                更新する
+              </button>
+
+              <button
+                type="button"
+                onClick={DeleteReviewData}
+                className="edit__container--button"
+                id="delete-button"
+              >
+                削除する
+              </button>
+            </div>
           </form>
         </div>
       )}

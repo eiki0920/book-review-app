@@ -13,6 +13,7 @@
       }
 
       input {
+        width: 250px;
         padding: 8px 20px 8px 5px;
         margin-bottom: 16px;
         border-radius: 10px;
@@ -22,7 +23,16 @@
     }
 
     &--button {
-      margin: 0 auto;
+      margin: 0 10px;
     }
   }
+}
+
+#delete-button {
+  background-color: red;
+}
+
+#delete-button:hover {
+  cursor: pointer;
+  background-color: rgb(203, 90, 90);
 }

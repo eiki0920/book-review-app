@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { useCookies } from "react-cookie";
 import Header from "../component/Header";
 
@@ -9,6 +10,12 @@ function CreateReview() {
   const [url, setUrl] = useState("");
   const [detail, setDetail] = useState("");
   const [review, setReview] = useState("");
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   const [cookie] = useCookies();
 
@@ -50,6 +57,7 @@ function CreateReview() {
         })
         .then((ans) => {
           console.log(ans);
+          console.log(errors);
 
           alert("レビューが作成されました");
         });
@@ -65,7 +73,18 @@ function CreateReview() {
         <label htmlFor="title">
           タイトル
           <br />
-          <input type="text" id="title" onChange={handleTitleChange} />
+          <input
+            type="text"
+            id="title"
+            {...register("title", {
+              required: "タイトルを入力してください",
+              onChange: handleTitleChange,
+              minLength: {
+                value: 4,
+                message: "タイトルは4文字以上にしてください",
+              },
+            })}
+          />
         </label>
 
         <br />
@@ -73,7 +92,14 @@ function CreateReview() {
         <label htmlFor="url">
           URL
           <br />
-          <input type="text" id="url" onChange={handleUrlChange} />
+          <input
+            type="text"
+            id="url"
+            {...register("url", {
+              required: "アイコンを入力してください",
+              onChange: handleUrlChange,
+            })}
+          />
         </label>
 
         <br />
@@ -81,7 +107,14 @@ function CreateReview() {
         <label htmlFor="detail">
           本の詳細
           <br />
-          <input type="text" id="detail" onChange={handleDetailChange} />
+          <input
+            type="text"
+            id="detail"
+            {...register("detail", {
+              required: "詳細を入力してください",
+              onChange: handleDetailChange,
+            })}
+          />
         </label>
 
         <br />
@@ -89,12 +122,19 @@ function CreateReview() {
         <label htmlFor="review">
           レビュー
           <br />
-          <input type="text" id="review" onChange={handleReviewChange} />
+          <input
+            type="text"
+            id="review"
+            {...register("review", {
+              required: "レビューを入力してください",
+              onChange: handleReviewChange,
+            })}
+          />
         </label>
 
         <br />
 
-        <button type="button" onClick={PostReview}>
+        <button type="button" onClick={handleSubmit(PostReview)}>
           作成
         </button>
       </form>
